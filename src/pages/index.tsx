@@ -33,6 +33,16 @@ export const Index = ()=>{
        
     }
 
+    const setActivity = (activity:ActivityInterface)=>{
+      
+        setState({
+            ...state,
+            activityes:[...state.activityes,activity]
+        });
+
+    }
+
+
 
 
 
@@ -45,7 +55,7 @@ export const Index = ()=>{
         component = <AcitvityList dataSet={state.activityes} goToView={goToView}  />;
     }
     if ( state.view === Views.create ){
-        component = <CreateActivity goBackAction={goBack}  />;
+        component = <CreateActivity goBackAction={goBack}  addActivity={setActivity}  />;
     }
 
 

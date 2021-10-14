@@ -4,6 +4,6 @@ export interface ActivityInterface {
     name:string,
     descripcion:string,
     status:string,
-    //dateCreated:string,
+    date?:string,
     //dateUpdated:string
 }
