@@ -1,6 +1,6 @@
 import React from "react";
 import {Button, Table, Typography} from "antd";
-import { TableColumns } from "../utils/constants";
+import { getTableColums } from "../utils/constants";
 import { ActivityInterface } from "../utils/interfaces/activity";
 import {Row,Col} from "antd";
 
@@ -13,6 +13,10 @@ type ActivityListProps = {
 
 
 const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
+
+    const onRealizedActivity = (object:ActivityInterface)=>{
+        console.log({object});
+    }
   
     return (
         <Row>
@@ -30,7 +34,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
             <Col span={24} >
                 <Table  
                 title={()=><Typography.Title level={5} >Listado de actividades</Typography.Title>} 
-                columns={TableColumns} dataSource={props.dataSet} />
+                columns={getTableColums(onRealizedActivity)} dataSource={props.dataSet} />
             </Col>
         </Row>
 

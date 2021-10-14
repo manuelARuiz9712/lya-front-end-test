@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Form,Row,Col, Input, Button, Divider,Space, DatePicker,Modal,notification} from "antd";
+import {Form,Row,Col, Input, Button, Divider,Space, DatePicker,Modal} from "antd";
 import moment from "moment";
 import { DateFormatString } from "../utils/constants";
 import { ActivityInterface } from "../utils/interfaces/activity";
@@ -8,6 +8,7 @@ import { v4 as uuidv4 } from 'uuid';
 type FormActivityProps  ={
     goBack:any,
     onSendResult:any,
+    defaultData?:ActivityInterface,
     typeAction: 'registro'| 'edition'
    
 }
@@ -18,21 +19,21 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
     const [date,setDate] = useState(moment().format(DateFormatString));
 
 
+    React.useEffect(()=>{
+
+        if (props.defaultData){
+            setDate(props.defaultData.date || '');
+        }
+
+    },[]);
+
+
     const onSendForm = (values: ActivityInterface) => {
         values.date = date;
         values.key= uuidv4();
         
         props.onSendResult(values);
-        if ( props.typeAction === "registro"){
-            notification.open({
-                message: 'Registro exitoso',
-                description:
-                  'Su actividad se ha agredado al todo list',
-             
-              });
-
-          
-        }
+     
        
     };
     const onChangeDate = (date:any,dateFormat:string)=>{
@@ -46,6 +47,7 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
 
     return (
         <Form
+            initialValues={props.defaultData}
             form={form}
             title="Crear nueva actividad"
             layout="vertical"
@@ -54,11 +56,13 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
             <Form.Item
                 label='Nombre de la actividad'
                 name='name'
+                
                 rules={[{
                     required: true, message: "Este campo es requerido"
                 }]}
             >
                 <Input
+                    disabled={props.typeAction=== "edition"}
                     type="text"
                     
                      />
@@ -81,6 +85,7 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
             >
             <DatePicker 
             picker="date"
+            disabled={props.typeAction=== "edition"}
             value={moment(date)}
             disabledDate={disabledDate}
             onChange={onChangeDate}
@@ -95,7 +100,11 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
                         Regresar
                     </Button>
                     <Button type="primary" htmlType="submit"  >
-                        Enviar formulario
+                        {
+                            props.typeAction === "edition"?
+                            'Registrar actividad':'Editar actividad'
+                        }
+                        
                     </Button>
                 </Space>
 
