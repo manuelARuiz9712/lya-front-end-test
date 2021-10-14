@@ -1,4 +1,4 @@
-import {Button,Dropdown,Menu} from "antd";
+import {Button,Dropdown,Menu,Tag} from "antd";
 import { ActivityInterface } from "./interfaces/activity";
 
 export const APP_NAME = "FRONT-END-TEST";
@@ -34,6 +34,14 @@ return  [
       title: 'Estado',
       dataIndex: 'status',
       key: 'status',
+      render:(status:string)=>{
+       
+        return <Tag
+        color={status === "PENDIENTE"?'orange':'green'}
+        >
+           {status}
+        </Tag>
+      }
     },
     {
       title: 'Accion',
