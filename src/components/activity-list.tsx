@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, Table, Typography} from "antd";
+import {Button, notification, Table, Typography} from "antd";
 import { getTableColums } from "../utils/constants";
 import { ActivityInterface } from "../utils/interfaces/activity";
 import {Row,Col} from "antd";
@@ -8,7 +8,8 @@ import {Row,Col} from "antd";
 type ActivityListProps = {
   dataSet:Array<ActivityInterface>,
   goToRegister:any,
-  goToEdit:any
+  goToEdit:any,
+  onCheckTodo:any
 };
 
 
@@ -16,7 +17,13 @@ type ActivityListProps = {
 const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
 
     const onRealizedActivity = (object:ActivityInterface)=>{
-        console.log({object});
+        props.onCheckTodo(object);
+        notification.open({
+            message: 'Tarea realizada',
+            description:
+              'Su actividad sha sido marcada como realizada',
+         
+          });
     }
     const onEditActivity = (object:ActivityInterface)=>{
         props.goToEdit(object);

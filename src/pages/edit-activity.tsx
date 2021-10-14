@@ -1,5 +1,5 @@
 import React from "react";
-import {Form,Row,Col,Typography, Input, Button, notification} from "antd";
+import {Row,Col,Typography, notification} from "antd";
 import { FormActivity } from "../components/form-activity";
 import { ActivityInterface } from "../utils/interfaces/activity";
 

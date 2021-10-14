@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button,Row,Col } from 'antd';
+import { Row,Col, notification } from 'antd';
 import { ActivityInterface } from "../utils/interfaces/activity";
 import { AcitvityList } from "../components/activity-list"; 
 import { stateInterface, Views } from "../utils/interfaces/state";
@@ -44,6 +44,21 @@ export const Index = ()=>{
         });
 
     }
+    const onCheckTodo = (activity:ActivityInterface)=>{
+        
+        let newActivityes =[...state.activityes];
+        let foundIndex = newActivityes.findIndex(act=>activity.key === act.key);
+        if ( foundIndex === -1 ){
+            return ;
+        }
+        newActivityes[foundIndex].status = "REALIZADO";
+        setState({
+            ...state,
+            activityes:newActivityes
+        });
+
+
+    }
     const editActivity = (activity:ActivityInterface)=>{
         let newActivityes =[...state.activityes];
         let foundIndex = newActivityes.findIndex(act=>state.activitySelected.key === act.key);
@@ -83,6 +98,7 @@ export const Index = ()=>{
         dataSet={state.activityes} 
         goToRegister={goToRegister} 
         goToEdit={goToEdit}
+        onCheckTodo={onCheckTodo}
         />;
     }
     if ( state.view === Views.create ){
