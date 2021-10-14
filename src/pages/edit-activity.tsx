@@ -1,5 +1,5 @@
 import React from "react";
-import {Form,Row,Col,Typography, Input, Button} from "antd";
+import {Form,Row,Col,Typography, Input, Button, notification} from "antd";
 import { FormActivity } from "../components/form-activity";
 import { ActivityInterface } from "../utils/interfaces/activity";
 
@@ -14,8 +14,15 @@ const EditActivity: React.FC<EditActivityProps> = (props)=>{
 
     /***Some validations extra */
     const getResult = (acitivty:ActivityInterface)=>{
-            //acitivty.status = 'PENDIENTE';
+     
+           
             props.onEditActivity(acitivty);
+            notification.open({
+                message: 'Edicion terminada',
+                description:
+                  'Su actividad fue editada con exito',
+             
+              });
 
     }
 

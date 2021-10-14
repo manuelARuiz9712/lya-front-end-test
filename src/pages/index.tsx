@@ -5,6 +5,7 @@ import { AcitvityList } from "../components/activity-list";
 import { stateInterface, Views } from "../utils/interfaces/state";
 import { CreateActivity } from "./create-activity";
 import { EditActivity } from "./edit-activity";
+import moment from "moment";
 
 export const Index = ()=>{
 
@@ -64,11 +65,10 @@ export const Index = ()=>{
         goToView(Views.create);
     }
     const goToEdit = (value:ActivityInterface)=>{
-        setState({
-            ...state,
-            activitySelected:value
-        });
-        
+        let newState = state;
+        value.date = moment(value.date);
+        newState.activitySelected = value;
+        setState(newState);
         goToView(Views.edit);
 
     }

@@ -22,10 +22,11 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
     React.useEffect(()=>{
 
         if (props.defaultData){
-            setDate(props.defaultData.date || '');
+            console.log("valu",props.defaultData);
+            //setDate(props.defaultData.date || '');
         }
 
-    },[]);
+    },[props.defaultData]);
 
 
     const onSendForm = (values: ActivityInterface) => {
