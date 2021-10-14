@@ -1,4 +1,5 @@
 import {Button,Dropdown,Menu,Tag} from "antd";
+import moment from "moment";
 import { ActivityInterface } from "./interfaces/activity";
 
 export const APP_NAME = "FRONT-END-TEST";
@@ -29,6 +30,7 @@ return  [
         title: 'Fecha',
         dataIndex: 'date',
         key: 'date',
+        render:(date:any)=>moment.isMoment(date)?date.format(DateFormatString):date
       },
     {
       title: 'Estado',

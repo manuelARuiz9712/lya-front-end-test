@@ -27,7 +27,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
     }
     const onEditActivity = (object:ActivityInterface)=>{
         props.goToEdit(object);
-        console.log({object});
+      
     }
   
     return (

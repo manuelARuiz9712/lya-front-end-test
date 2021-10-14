@@ -22,7 +22,7 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
     React.useEffect(()=>{
 
         if (props.defaultData){
-            console.log("valu",props.defaultData);
+            
             //setDate(props.defaultData.date || '');
         }
 

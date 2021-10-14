@@ -80,7 +80,7 @@ export const Index = ()=>{
         goToView(Views.create);
     }
     const goToEdit = (value:ActivityInterface)=>{
-        let newState = state;
+        let newState = {...state};
         value.date = moment(value.date);
         newState.activitySelected = value;
         setState(newState);
