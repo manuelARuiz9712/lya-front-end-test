@@ -20,7 +20,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
                 <Row>
                     <Col span={10} >
                         <Button
-                        onClick={()=>props.goToView("add-activity")}
+                        onClick={()=>props.goToView("create")}
                         >Agregar nueva actividad</Button>
                     </Col>
                 </Row>

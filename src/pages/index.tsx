@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import { Button,Row,Col } from 'antd';
 import { ActivityInterface } from "../utils/interfaces/activity";
 import { AcitvityList } from "../components/activity-list"; 
-import { stateInterface } from "../utils/interfaces/state";
+import { stateInterface, Views } from "../utils/interfaces/state";
+import { CreateActivity } from "./create-activity";
 
 export const Index = ()=>{
 
     const [state,setState]:[stateInterface,any] = useState({
         activityes:[],
-        view:"list",
+        view:Views.list,
         oldView:""
     });
 
@@ -20,6 +21,16 @@ export const Index = ()=>{
             view:view,
             oldView:state.view
         });
+       
+    }
+    const goBack = (view:string)=>{
+
+        setState({
+            ...state,
+            view:state.oldView,
+            oldView:""
+        });
+       
     }
 
 
@@ -30,8 +41,11 @@ export const Index = ()=>{
 
     let component ;
 
-    if ( state.view === 'list' ){
+    if ( state.view === Views.list){
         component = <AcitvityList dataSet={state.activityes} goToView={goToView}  />;
+    }
+    if ( state.view === Views.create ){
+        component = <CreateActivity goBackAction={goBack}  />;
     }
 
 
