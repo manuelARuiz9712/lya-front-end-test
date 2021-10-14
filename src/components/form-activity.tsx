@@ -102,7 +102,7 @@ const FormActivity: React.FC<FormActivityProps> = (props)=>{
                     <Button type="primary" htmlType="submit"  >
                         {
                             props.typeAction === "edition"?
-                            'Registrar actividad':'Editar actividad'
+                            'Editar actividad':'Crear actividad'
                         }
                         
                     </Button>

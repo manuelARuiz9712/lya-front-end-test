@@ -7,7 +7,8 @@ import {Row,Col} from "antd";
 
 type ActivityListProps = {
   dataSet:Array<ActivityInterface>,
-  goToView:any
+  goToRegister:any,
+  goToEdit:any
 };
 
 
@@ -17,6 +18,10 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
     const onRealizedActivity = (object:ActivityInterface)=>{
         console.log({object});
     }
+    const onEditActivity = (object:ActivityInterface)=>{
+        props.goToEdit(object);
+        console.log({object});
+    }
   
     return (
         <Row>
@@ -24,7 +29,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
                 <Row>
                     <Col span={10} >
                         <Button
-                        onClick={()=>props.goToView("create")}
+                        onClick={props.goToRegister}
                         >Agregar nueva actividad</Button>
                     </Col>
                 </Row>
@@ -34,7 +39,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
             <Col span={24} >
                 <Table  
                 title={()=><Typography.Title level={5} >Listado de actividades</Typography.Title>} 
-                columns={getTableColums(onRealizedActivity)} dataSource={props.dataSet} />
+                columns={getTableColums(onRealizedActivity,onEditActivity)} dataSource={props.dataSet} />
             </Col>
         </Row>
 

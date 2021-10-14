@@ -60,8 +60,15 @@ export const Index = ()=>{
     }
 
 
-
+    const goToRegister = ()=>{
+        goToView(Views.create);
+    }
     const goToEdit = (value:ActivityInterface)=>{
+        setState({
+            ...state,
+            activitySelected:value
+        });
+        
         goToView(Views.edit);
 
     }
@@ -74,7 +81,9 @@ export const Index = ()=>{
     if ( state.view === Views.list){
         component = <AcitvityList 
         dataSet={state.activityes} 
-        goToView={goToView}  />;
+        goToRegister={goToRegister} 
+        goToEdit={goToEdit}
+        />;
     }
     if ( state.view === Views.create ){
         component = <CreateActivity 
