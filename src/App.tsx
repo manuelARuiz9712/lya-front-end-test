@@ -1,13 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './assets/css/App.less';
-import { Button } from 'antd';
+import { Index } from './pages';
 
 const  App  = () => {
   return (
-    <div className="App">
-      <Button type="primary">Button</Button>
-  </div>
+      <Index />
   );
 }
 
