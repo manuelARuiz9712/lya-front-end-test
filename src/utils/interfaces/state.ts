@@ -9,7 +9,5 @@ export enum Views {
 export interface stateInterface {
     dataSetactivityes:Array<ActivityInterface>,
     activityes:Array<ActivityInterface>,
-    view:Views,
-    oldView:string,
-    activitySelected?:ActivityInterface | any
+  
 }

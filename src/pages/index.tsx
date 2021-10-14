@@ -12,28 +12,39 @@ export const Index = ()=>{
     const [state,setState]:[stateInterface,any] = React.useState({
          dataSetactivityes:[],
         activityes:[],
-        view:Views.list,
+      
+    });
+    const [activitySelected,setActivitySelected]:[any,any] = React.useState(null);
+    const [viewNavigation,setViewNavigation] = React.useState({
+        view:"list",
         oldView:""
     });
-    const [activitySelected,setActivitySelected] = React.useState({});
 
 
     const goToView = (view:string)=>{
-
-        setState({
-            ...state,
+        setViewNavigation({
             view:view,
-            oldView:state.view
+            oldView:viewNavigation.view
         });
+
+       
        
     }
     const goBack = (view:string)=>{
 
-        setState({
-            ...state,
-            view:state.oldView,
+        setViewNavigation({
+            view:viewNavigation.oldView,
             oldView:""
         });
+
+        if (viewNavigation.oldView === "list" ){
+            console.log("entra");
+            setState({
+                ...state,
+                activityes:[...state.dataSetactivityes]
+            });
+        }
+        
        
     }
 
@@ -93,7 +104,7 @@ export const Index = ()=>{
     }
     const onEditActivity = (activity:ActivityInterface)=>{
         let newActivityes =[...state.dataSetactivityes];
-        let foundIndex = newActivityes.findIndex(act=>state.activitySelected.key === act.key);
+        let foundIndex = newActivityes.findIndex(act=>activitySelected?.key === act.key);
 
         if ( foundIndex === -1 ){
             return ;
@@ -123,7 +134,7 @@ export const Index = ()=>{
 
     let component ;
 
-    if ( state.view === Views.list){
+    if ( viewNavigation.view === Views.list){
         component = <AcitvityList 
         dataSet={  state.activityes} 
         goToRegister={goToRegister} 
@@ -132,12 +143,12 @@ export const Index = ()=>{
         onCheckTodo={onCheckTodo}
         />;
     }
-    if ( state.view === Views.create ){
+    if ( viewNavigation.view === Views.create ){
         component = <CreateActivity 
         goBackAction={goBack}  
         addActivity={setActivity}  />;
     }
-    if ( state.view === Views.edit ){
+    if ( viewNavigation.view === Views.edit ){
         component = <EditActivity 
         defaultData={activitySelected}  
         goBackAction={goBack}  
