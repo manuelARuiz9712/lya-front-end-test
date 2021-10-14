@@ -11,7 +11,7 @@ type EditActivityProps = {
 }
 
 const EditActivity: React.FC<EditActivityProps> = (props)=>{
-
+    console.log({props});
     /***Some validations extra */
     const getResult = (acitivty:ActivityInterface)=>{
      

@@ -9,12 +9,13 @@ import moment from "moment";
 
 export const Index = ()=>{
 
-    const [state,setState]:[stateInterface,any] = useState({
+    const [state,setState]:[stateInterface,any] = React.useState({
+         dataSetactivityes:[],
         activityes:[],
-        activitySelected:{},
         view:Views.list,
         oldView:""
     });
+    const [activitySelected,setActivitySelected] = React.useState({});
 
 
     const goToView = (view:string)=>{
@@ -40,7 +41,9 @@ export const Index = ()=>{
       
         setState({
             ...state,
-            activityes:[...state.activityes,activity]
+            dataSetactivityes:[...state.dataSetactivityes,activity],
+            activityes:[...state.activityes,activity],
+
         });
 
     }
@@ -48,19 +51,48 @@ export const Index = ()=>{
         
         let newActivityes =[...state.activityes];
         let foundIndex = newActivityes.findIndex(act=>activity.key === act.key);
+        
         if ( foundIndex === -1 ){
             return ;
         }
         newActivityes[foundIndex].status = "REALIZADO";
+
+        let newDataSetActivityes =[...state.dataSetactivityes];
+        let foundIndexDataSet = newDataSetActivityes.findIndex(act=>activity.key === act.key);
+        newDataSetActivityes[foundIndexDataSet].status = "REALIZADO";
+        
+
+
         setState({
             ...state,
-            activityes:newActivityes
+            activityes:newActivityes,
+            dataSetactivityes:newDataSetActivityes
         });
 
 
     }
-    const editActivity = (activity:ActivityInterface)=>{
-        let newActivityes =[...state.activityes];
+
+    const onSearchItem = (value:string)=>{
+        console.log({value});
+        if (value.length === 0){
+            setState({
+                ...state,
+                activityes:[...state.dataSetactivityes]
+            });
+
+        }else{
+            let searchResult = [...state.dataSetactivityes].filter(ele=>ele.descripcion.toLowerCase().includes( value.toLowerCase() ));
+
+            setState({
+             ...state,
+             activityes:searchResult
+         });
+        }
+       
+
+    }
+    const onEditActivity = (activity:ActivityInterface)=>{
+        let newActivityes =[...state.dataSetactivityes];
         let foundIndex = newActivityes.findIndex(act=>state.activitySelected.key === act.key);
 
         if ( foundIndex === -1 ){
@@ -80,11 +112,9 @@ export const Index = ()=>{
         goToView(Views.create);
     }
     const goToEdit = (value:ActivityInterface)=>{
-        let newState = {...state};
         value.date = moment(value.date);
-        newState.activitySelected = value;
-        setState(newState);
-        goToView(Views.edit);
+        setActivitySelected(value);
+         goToView(Views.edit);
 
     }
 
@@ -95,9 +125,10 @@ export const Index = ()=>{
 
     if ( state.view === Views.list){
         component = <AcitvityList 
-        dataSet={state.activityes} 
+        dataSet={  state.activityes} 
         goToRegister={goToRegister} 
         goToEdit={goToEdit}
+        onSearchItem={onSearchItem}
         onCheckTodo={onCheckTodo}
         />;
     }
@@ -108,9 +139,9 @@ export const Index = ()=>{
     }
     if ( state.view === Views.edit ){
         component = <EditActivity 
-        defaultData={state.activitySelected}  
+        defaultData={activitySelected}  
         goBackAction={goBack}  
-        onEditActivity={editActivity}  />;
+        onEditActivity={onEditActivity}  />;
     }
 
 
