@@ -43,6 +43,8 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
                         onClick={props.goToRegister}
                         >Agregar nueva actividad</Button>
                     </Col>
+                    <Col span={4} >
+                    </Col>
                     <Col span={10} >
                         <Input.Search onChange={(evt)=>props.onSearchItem(evt.target.value)} placeholder='Buscar por descripcion' />
                     </Col>
