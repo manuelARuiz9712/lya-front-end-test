@@ -6,6 +6,8 @@ import { stateInterface, Views } from "../utils/interfaces/state";
 import { CreateActivity } from "./create-activity";
 import { EditActivity } from "./edit-activity";
 import moment from "moment";
+import { ModalRandomDescription } from "../components/modal-random-description";
+import { getRamdomFactsWithLimits } from "../network/cats";
 
 export const Index = ()=>{
 
@@ -19,6 +21,7 @@ export const Index = ()=>{
         view:"list",
         oldView:""
     });
+    const [modalRandomVisible,setModalRandomVisible] = useState(false);
 
 
     const goToView = (view:string)=>{
@@ -30,7 +33,7 @@ export const Index = ()=>{
        
        
     }
-    const goBack = (view:string)=>{
+    const goBack = ()=>{
 
         setViewNavigation({
             view:viewNavigation.oldView,
@@ -58,6 +61,7 @@ export const Index = ()=>{
         });
 
     }
+    
     const onCheckTodo = (activity:ActivityInterface)=>{
         
         let newActivityes =[...state.activityes];
@@ -122,12 +126,23 @@ export const Index = ()=>{
     const goToRegister = ()=>{
         goToView(Views.create);
     }
+    
     const goToEdit = (value:ActivityInterface)=>{
         value.date = moment(value.date);
         setActivitySelected(value);
          goToView(Views.edit);
 
     }
+
+    const GenerateRandomDescription = (limit:number)=>{
+
+        getRamdomFactsWithLimits(limit).then(res=>{
+            console.log({res});
+        })
+
+    }
+   
+
 
 
 
@@ -140,6 +155,7 @@ export const Index = ()=>{
         goToRegister={goToRegister} 
         goToEdit={goToEdit}
         onSearchItem={onSearchItem}
+        onGenerateRandom={()=>setModalRandomVisible(true)}
         onCheckTodo={onCheckTodo}
         />;
     }
@@ -159,6 +175,11 @@ export const Index = ()=>{
 
   return (
     <div className="app-wrapper">
+        <ModalRandomDescription 
+        isVisible={modalRandomVisible}
+        onCloseModal={()=>setModalRandomVisible(false)}
+        onGenerateAction={GenerateRandomDescription}
+        />
         <Row>
 
                 <Col sm={2} xs={2} md={4} >

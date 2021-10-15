@@ -10,7 +10,8 @@ type ActivityListProps = {
   goToRegister:any,
   goToEdit:any,
   onCheckTodo:any,
-  onSearchItem:any
+  onSearchItem:any,
+  onGenerateRandom:any,
 };
 
 
@@ -45,7 +46,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
                                     Agregar nueva actividad
                                 </Button>
                                 <Button
-                                onClick={props.goToRegister}
+                                onClick={props.onGenerateRandom}
                                 >
                                 Agregar frases random
                                 </Button>

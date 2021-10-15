@@ -19,3 +19,7 @@ const getRamdomFactsWithLimits = (limit:number) =>{
 
 }
 
+
+export {
+    getRamdomFactsWithLimits
+}
