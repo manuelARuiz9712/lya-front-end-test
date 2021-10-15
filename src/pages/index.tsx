@@ -89,7 +89,7 @@ export const Index = ()=>{
     }
 
     const onSearchItem = (value:string)=>{
-        console.log({value});
+       
         if (value.length === 0){
             setState({
                 ...state,
