@@ -22,6 +22,7 @@ export const Index = ()=>{
         oldView:""
     });
     const [modalRandomVisible,setModalRandomVisible] = useState(false);
+    const [loading,setLoading] = useState(false);
 
 
     const goToView = (view:string)=>{
@@ -135,10 +136,27 @@ export const Index = ()=>{
     }
 
     const GenerateRandomDescription = (limit:number)=>{
-
+        setModalRandomVisible(false);
+        setLoading (true);
+      
         getRamdomFactsWithLimits(limit).then(res=>{
-            console.log({res});
-        })
+            let newState = {...state};
+            newState.dataSetactivityes = newState.dataSetactivityes.concat(res);
+            newState.activityes = newState.activityes.concat(res);
+            console.log("act",newState.activityes)
+            setState(newState);
+            /* setState({
+                ...state,
+                dataSetactivityes:[...state.dataSetactivityes,res],
+                activityes:[...state.activityes,res],
+    
+            }); */
+
+         
+           
+        });
+        setLoading (false);
+      
 
     }
    
@@ -153,6 +171,7 @@ export const Index = ()=>{
         component = <AcitvityList 
         dataSet={  state.activityes} 
         goToRegister={goToRegister} 
+        loading={loading}
         goToEdit={goToEdit}
         onSearchItem={onSearchItem}
         onGenerateRandom={()=>setModalRandomVisible(true)}

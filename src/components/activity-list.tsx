@@ -12,6 +12,7 @@ type ActivityListProps = {
   onCheckTodo:any,
   onSearchItem:any,
   onGenerateRandom:any,
+  loading:boolean
 };
 
 
@@ -36,7 +37,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
         <Row>
             <Col span={24} >
                 <Row   >
-                    <Col  md={7} sm={12} xs={12} >
+                    <Col  md={7} sm={24} xs={24} >
 
                         <div className='panel-padding' >
                           <Space direction="horizontal" >
@@ -70,6 +71,7 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
            
             <Col span={24} >
                 <Table  
+                loading={props.loading}
                 title={()=><Typography.Title level={5} >Listado de actividades</Typography.Title>} 
                 columns={getTableColums(onRealizedActivity,onEditActivity)} dataSource={props.dataSet} />
             </Col>

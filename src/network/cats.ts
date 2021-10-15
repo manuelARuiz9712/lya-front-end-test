@@ -1,21 +1,18 @@
-import { CATS_API } from "../utils/constants";
+import { CATS_API, DateFormatString } from "../utils/constants";
+import { parseFactstoDataSet } from "../utils/global-methods";
+import { ActivityInterface } from "../utils/interfaces/activity";
 
 
-const getRamdomFactsWithLimits = (limit:number) =>{
+const getRamdomFactsWithLimits = async(limit:number) =>{
 
-    return new Promise( (resolve)=>{
+    let res  = await fetch(`${CATS_API}/facts?limit=${limit}`,{
+        method:"GET",
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res=>res.json());
 
-        fetch(`${CATS_API}/fact?max_length=${limit}`,{
-            method:"GET",
-            headers:{
-                'Content-Type': 'application/json'
-            }
-        }).then(res=>res.json()).then(res=>{
-            resolve(res);
-        });
-        
-    });
-
+   return parseFactstoDataSet(res.data);
 
 }
 

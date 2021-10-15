@@ -5,9 +5,6 @@ import { ActivityInterface } from "./interfaces/activity";
 export const APP_NAME = "FRONT-END-TEST";
 export const DateFormatString = "YYYY-MM-DD";
 export const CATS_API =  process.env.REACT_APP_CAT_API_URI;
-console.log({CATS_API});
-
-
 
 
 export const getTableColums = (callbackCheck:any,callbackEdit:any)=>{
