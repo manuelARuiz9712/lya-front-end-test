@@ -45,11 +45,11 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
                                     onClick={props.goToRegister}
                                 >
                                     Agregar nueva actividad
-                                </Button>
+                            </Button>
                                 <Button
                                 onClick={props.onGenerateRandom}
                                 >
-                                Agregar frases random
+                                    Agregar frases random
                                 </Button>
                           </Space>
                         </div>

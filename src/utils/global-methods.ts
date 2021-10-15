@@ -20,7 +20,7 @@ const parseFactstoDataSet = function (facts:Array<FactsInterface>):Array<Activit
 
     let array:Array<ActivityInterface> = [];
 
-    facts.map( (desc:FactsInterface,index:number)=>{
+    facts.forEach( (desc:FactsInterface,index:number)=>{
 
         array.push({
             key:uuidv4(),

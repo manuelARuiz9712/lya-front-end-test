@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal,InputNumber, Typography,Form, Row, Col } from "antd";
+import { Modal,InputNumber,Form, Row, Col } from "antd";
 
 
 type ModalRandomDescriptionProps = {

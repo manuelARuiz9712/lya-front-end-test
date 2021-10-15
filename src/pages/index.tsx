@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row,Col, notification } from 'antd';
+import { Row,Col } from 'antd';
 import { ActivityInterface } from "../utils/interfaces/activity";
 import { AcitvityList } from "../components/activity-list"; 
 import { stateInterface, Views } from "../utils/interfaces/state";
