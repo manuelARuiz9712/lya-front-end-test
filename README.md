@@ -13,7 +13,7 @@ git clone https://github.com/manuelARuiz9712/lya-front-end-test.git
 
 ### Pre-requisitos 📋
 
-_Para correr el proyecto necesitas tener [Node.js](https://nodejs.org/es/) _
+_Para correr el proyecto necesitas tener [Node.js](https://nodejs.org/es/) instalado _
 
 
 
