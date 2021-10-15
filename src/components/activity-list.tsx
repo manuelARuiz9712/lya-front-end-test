@@ -1,5 +1,5 @@
 import React from "react";
-import {Button, notification, Table, Typography,Input} from "antd";
+import {Button, notification, Table, Typography,Input, Space} from "antd";
 import { getTableColums } from "../utils/constants";
 import { ActivityInterface } from "../utils/interfaces/activity";
 import {Row,Col} from "antd";
@@ -34,19 +34,34 @@ const  AcitvityList:React.FC<ActivityListProps>= (props)=>{
     return (
         <Row>
             <Col span={24} >
-                <Row>
-                    <Col span={10} >
+                <Row   >
+                    <Col  md={7} sm={12} xs={12} >
 
-                        
-                        
-                        <Button
-                        onClick={props.goToRegister}
-                        >Agregar nueva actividad</Button>
+                        <div className='panel-padding' >
+                          <Space direction="horizontal" >
+                            <Button
+                                    onClick={props.goToRegister}
+                                >
+                                    Agregar nueva actividad
+                                </Button>
+                                <Button
+                                onClick={props.goToRegister}
+                                >
+                                Agregar frases random
+                                </Button>
+                          </Space>
+                        </div>
+                       
                     </Col>
-                    <Col span={4} >
+                    <Col  md={7} sm={12} xs={12} ></Col>
+                  
+                    <Col span={2}  >
                     </Col>
-                    <Col span={10} >
-                        <Input.Search onChange={(evt)=>props.onSearchItem(evt.target.value)} placeholder='Buscar por descripcion' />
+                    <Col md={8} sm={24} xs={24} >
+                        <div className='panel-padding' >
+                            <Input.Search onChange={(evt)=>props.onSearchItem(evt.target.value)} placeholder='Buscar por descripcion' />
+                            
+                        </div>
                     </Col>
                 </Row>
 
